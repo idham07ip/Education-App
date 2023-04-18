@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "672617180679",
+    "project_id": "education-app-6196c",
+    "storage_bucket": "education-app-6196c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:672617180679:android:458cabdfb9f445659944a2",
+        "android_client_info": {
+          "package_name": "com.example.education_app2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "672617180679-et84if4qbrsit3lo9udr1n34cdu22f8r.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.education_app2",
+            "certificate_hash": "e55f571efaac0465e7547ce1eff8475e5f2e6ecf"
+          }
+        },
+        {
+          "client_id": "672617180679-ctep6sm4pft63qmiqmob65iq8mubcej0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCPCHDZjF5mm_7Fakn-C8IN0370E-SrbEE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "672617180679-08158l8uumqqt8q1eh3nmcs90t4njot6.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "672617180679-2lgrg84iocit77ctcssd02d1dm79pcql.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.educationApp2"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
