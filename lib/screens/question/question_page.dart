@@ -1,7 +1,10 @@
+import 'package:education_app2/configs/themes/app_colors.dart';
 import 'package:education_app2/configs/themes/custom_text_styles.dart';
+import 'package:education_app2/configs/themes/ui_parameters.dart';
 import 'package:education_app2/controllers/question_paper/questions_controller.dart';
 import 'package:education_app2/firebase_ref/loading_status.dart';
 import 'package:education_app2/widgets/common/background_decoration.dart';
+import 'package:education_app2/widgets/common/main_button.dart';
 import 'package:education_app2/widgets/common/question_placeholder.dart';
 import 'package:education_app2/widgets/content_area.dart';
 import 'package:education_app2/widgets/questions/answer_card.dart';
@@ -38,6 +41,7 @@ class QuestionPage extends GetView<QuestionsController> {
                             style: questionTS,
                           ),
                           GetBuilder<QuestionsController>(
+                            id: 'answers_list',
                             builder: (context) {
                               return ListView.separated(
                                   shrinkWrap: true,
@@ -77,6 +81,56 @@ class QuestionPage extends GetView<QuestionsController> {
                     ),
                   ),
                 ),
+
+              //New Widget Next / Previous Questions
+              ColoredBox(
+                color: Theme.of(context).scaffoldBackgroundColor,
+                child: Padding(
+                  padding: UIParameters.mobileScreenPadding,
+                  child: Row(
+                    children: [
+                      Visibility(
+                        visible: controller.isFirstQuestion,
+                        child: SizedBox(
+                          width: 55,
+                          height: 55,
+                          child: MainButton(
+                            onTap: () {
+                              //Previous Question
+                              controller.prevQuestion();
+                            },
+                            child: Icon(
+                              Icons.arrow_back_ios_new_rounded,
+                              color: Get.isDarkMode
+                                  ? onSurfaceTextColor
+                                  : Theme.of(context).primaryColor,
+                            ),
+                          ),
+                        ),
+                      ),
+
+                      //Calling NextQuestion
+                      Expanded(
+                        child: Visibility(
+                          visible: controller.loadingStatus.value ==
+                              LoadingStatus.completed,
+                          child: MainButton(
+                            onTap: () {
+                              //New Page
+                              controller.isLastQuestion
+                                  ? Container()
+                                  : controller.nextQuestion();
+                            },
+                            title: controller.isLastQuestion
+                                ? 'Complete'
+                                : 'Next Question',
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
             ],
           ),
         ),

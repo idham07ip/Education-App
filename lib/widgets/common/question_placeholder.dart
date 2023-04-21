@@ -21,7 +21,6 @@ class QuestionPlaceholder extends StatelessWidget {
       color: Theme.of(context).scaffoldBackgroundColor,
     );
     return Shimmer.fromColors(
-      
       baseColor: Colors.white,
       highlightColor: Colors.blueGrey.withOpacity(0.5),
       child: EasySeparatedColumn(
