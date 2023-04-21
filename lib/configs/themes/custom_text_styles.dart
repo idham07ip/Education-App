@@ -11,6 +11,8 @@ TextStyle cardTitles(context) => TextStyle(
       fontWeight: FontWeight.bold,
     );
 
+const questionTS = TextStyle(fontSize: 16, fontWeight: FontWeight.w800);
+
 const detailText = TextStyle(
   fontSize: 12,
 );

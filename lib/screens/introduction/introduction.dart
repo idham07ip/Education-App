@@ -39,7 +39,7 @@ class AppIntroductionSreen extends StatelessWidget {
                   color: onSurfaceTextColor,
                   fontFamily: 'Poppins',
                   fontSize: 16.5,
-                  fontWeight: FontWeight.bold,
+                  fontWeight: FontWeight.w700,
                 ),
               ),
 

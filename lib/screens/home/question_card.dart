@@ -26,7 +26,10 @@ class QuestionCard extends GetView<QuestionPaperController> {
       //
       child: InkWell(
         onTap: () {
-          controller.navigateToQuestionScreen(kertas: model);
+          controller.navigateToQuestionScreen(
+            kertas: model,
+            tryAgain: false,
+          );
           // print('${model.title}');
         },
         child: Padding(

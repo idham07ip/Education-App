@@ -1,6 +1,7 @@
 import 'package:education_app2/controllers/auth_controller.dart';
 import 'package:education_app2/firebase_ref/references.dart';
 import 'package:education_app2/models/question_paper_model.dart';
+import 'package:education_app2/screens/question/question_page.dart';
 import 'package:education_app2/services/firebase_storage_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:education_app2/utils/app_logger.dart';
@@ -55,7 +56,9 @@ class QuestionPaperController extends GetxController {
         // Get.offNamed(page)
       } else {
         // print("Sudah Login");
-        // Get.toNamed(page)
+
+        //Route to QuestionPage with GetX
+        Get.toNamed(QuestionPage.routeName, arguments: kertas);
       }
     } else {
       // print('The title Question is ${kertas.title}');
