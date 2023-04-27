@@ -2,6 +2,7 @@ import 'package:education_app2/configs/themes/app_colors.dart';
 import 'package:education_app2/configs/themes/ui_parameters.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:get/get.dart';
 
 TextStyle cardTitles(context) => TextStyle(
       color: UIParameters.isDarkMode()
@@ -22,3 +23,13 @@ const headerText = TextStyle(
   fontWeight: FontWeight.w700,
   color: onSurfaceTextColor,
 );
+
+const appBarTS = TextStyle(
+    fontWeight: FontWeight.bold, fontSize: 16, color: onSurfaceTextColor);
+
+TextStyle countdownTimerTS() => TextStyle(
+      letterSpacing: 2,
+      color: UIParameters.isDarkMode()
+          ? Theme.of(Get.context!).textTheme.bodyText1!.color
+          : Theme.of(Get.context!).primaryColor,
+    );

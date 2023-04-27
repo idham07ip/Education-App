@@ -4,10 +4,12 @@ import 'package:education_app2/configs/themes/ui_parameters.dart';
 import 'package:education_app2/controllers/question_paper/questions_controller.dart';
 import 'package:education_app2/firebase_ref/loading_status.dart';
 import 'package:education_app2/widgets/common/background_decoration.dart';
+import 'package:education_app2/widgets/common/custom_app_bar.dart';
 import 'package:education_app2/widgets/common/main_button.dart';
 import 'package:education_app2/widgets/common/question_placeholder.dart';
 import 'package:education_app2/widgets/content_area.dart';
 import 'package:education_app2/widgets/questions/answer_card.dart';
+import 'package:education_app2/widgets/questions/countdown_timer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
@@ -20,6 +22,39 @@ class QuestionPage extends GetView<QuestionsController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: CustomAppBar(
+        leading: Container(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 8,
+            vertical: 4,
+          ),
+          decoration: const ShapeDecoration(
+            shape: StadiumBorder(
+              side: BorderSide(
+                color: onSurfaceTextColor,
+                width: 2,
+              ),
+            ),
+          ),
+          child: Obx(
+            () => CountdownTimer(
+              time: controller.time.value,
+              color: onSurfaceTextColor,
+            ),
+          ),
+          // child: Text("Timer"),
+        ),
+        showActionIcon: true,
+        titileWidget: Obx(
+          () => Text(
+            'Soal ${(controller.questionIndex.value + 1).toString().padLeft(2, '0')}',
+            style: appBarTS,
+          ),
+        ),
+      ),
+
+      //
       body: BackgroundDecoration(
         child: Obx(
           () => Column(
