@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:education_app2/firebase_ref/loading_status.dart';
 import 'package:education_app2/firebase_ref/references.dart';
 import 'package:education_app2/models/question_paper_model.dart';
+import 'package:education_app2/screens/question/result_screen.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 
@@ -92,6 +93,24 @@ class QuestionsController extends GetxController {
     update(['answers_list']);
   }
 
+  //Completed Test
+  String get completedTest {
+    final answered = allQuestions
+        .where((element) => element.selectedAnswer != null)
+        .toList()
+        .length;
+    return '$answered dari ${allQuestions.length} soal terjawab';
+  }
+
+  //moveToQuestion
+  void jumpToQuestion(int index, {bool isGoBack = true}) {
+    questionIndex.value = index;
+    currentQuestion.value = allQuestions[index];
+    if (isGoBack) {
+      Get.back();
+    }
+  }
+
   //Next Question Controller
   void nextQuestion() {
     if (questionIndex.value >= allQuestions.length - 1) return;
@@ -110,7 +129,7 @@ class QuestionsController extends GetxController {
   _startTimer(int seconds) {
     const duration = Duration(seconds: 1);
     remainSeconds = seconds;
-    Timer.periodic(duration, (Timer timer) {
+    _timer = Timer.periodic(duration, (Timer timer) {
       if (remainSeconds == 0) {
         timer.cancel();
       } else {
@@ -124,5 +143,11 @@ class QuestionsController extends GetxController {
         remainSeconds--;
       }
     });
+  }
+
+  //Complete button
+  void complete() {
+    _timer!.cancel();
+    Get.offAndToNamed(ResultScreen.routeName);
   }
 }

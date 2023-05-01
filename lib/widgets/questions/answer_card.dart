@@ -3,6 +3,8 @@ import 'package:education_app2/configs/themes/ui_parameters.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+enum AnswerStatus { correct, wrong, answered, notanswered }
+
 class AnswerCard extends StatelessWidget {
   final String answer;
   final bool isSelected;

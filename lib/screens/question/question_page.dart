@@ -3,6 +3,7 @@ import 'package:education_app2/configs/themes/custom_text_styles.dart';
 import 'package:education_app2/configs/themes/ui_parameters.dart';
 import 'package:education_app2/controllers/question_paper/questions_controller.dart';
 import 'package:education_app2/firebase_ref/loading_status.dart';
+import 'package:education_app2/screens/question/test_overview_screen.dart';
 import 'package:education_app2/widgets/common/background_decoration.dart';
 import 'package:education_app2/widgets/common/custom_app_bar.dart';
 import 'package:education_app2/widgets/common/main_button.dart';
@@ -61,7 +62,10 @@ class QuestionPage extends GetView<QuestionsController> {
             children: [
               if (controller.loadingStatus.value == LoadingStatus.loading)
                 ContentArea(
-                    child: const Expanded(child: QuestionPlaceholder())),
+                  child: const Expanded(
+                    child: QuestionPlaceholder(),
+                  ),
+                ),
               if (controller.loadingStatus.value == LoadingStatus.completed)
                 Expanded(
                   child: ContentArea(
@@ -151,9 +155,9 @@ class QuestionPage extends GetView<QuestionsController> {
                               LoadingStatus.completed,
                           child: MainButton(
                             onTap: () {
-                              //New Page
+                              //Next page to overview
                               controller.isLastQuestion
-                                  ? Container()
+                                  ? Get.toNamed(TestOverviewScreen.routeName)
                                   : controller.nextQuestion();
                             },
                             title: controller.isLastQuestion
