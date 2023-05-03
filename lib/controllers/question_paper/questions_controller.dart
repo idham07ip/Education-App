@@ -1,10 +1,14 @@
 import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:education_app2/controllers/auth_controller.dart';
+import 'package:education_app2/controllers/question_paper/question_paper_controller.dart';
 import 'package:education_app2/firebase_ref/loading_status.dart';
 import 'package:education_app2/firebase_ref/references.dart';
 import 'package:education_app2/models/question_paper_model.dart';
+import 'package:education_app2/screens/home/home_screen.dart';
 import 'package:education_app2/screens/question/result_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 
@@ -149,5 +153,18 @@ class QuestionsController extends GetxController {
   void complete() {
     _timer!.cancel();
     Get.offAndToNamed(ResultScreen.routeName);
+  }
+
+  //Try Again Questions
+  void tryAgain() {
+    Get.find<QuestionPaperController>().navigateToQuestionScreen(
+      kertas: questionPaperModel,
+      tryAgain: true,
+    );
+  }
+
+  void navigateToHome() {
+    _timer!.cancel();
+    Get.offNamedUntil(HomeScreen.routeName, (route) => false);
   }
 }

@@ -1,10 +1,12 @@
 import 'package:education_app2/configs/themes/custom_text_styles.dart';
+import 'package:education_app2/configs/themes/ui_parameters.dart';
 import 'package:education_app2/controllers/question_paper/question_controller_extension.dart';
 import 'package:education_app2/controllers/question_paper/questions_controller.dart';
 import 'package:education_app2/screens/question/answer_check_screen.dart';
 import 'package:education_app2/screens/question/question_number_card.dart';
 import 'package:education_app2/widgets/common/background_decoration.dart';
 import 'package:education_app2/widgets/common/custom_app_bar.dart';
+import 'package:education_app2/widgets/common/main_button.dart';
 import 'package:education_app2/widgets/content_area.dart';
 import 'package:education_app2/widgets/questions/answer_card.dart';
 import 'package:flutter/cupertino.dart';
@@ -22,16 +24,16 @@ class ResultScreen extends GetView<QuestionsController> {
     Color _textColor =
         Get.isDarkMode ? Colors.white : Theme.of(context).primaryColor;
     return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: CustomAppBar(
+        leading: const SizedBox(
+          height: 80,
+        ),
+        title: controller.correctAnsweredQuestion,
+      ),
       body: BackgroundDecoration(
         child: Column(
           children: [
-            CustomAppBar(
-              leading: const SizedBox(
-                height: 80,
-              ),
-              title: controller.correctAnsweredQuestion,
-            ),
-
             //
             Expanded(
               child: ContentArea(
@@ -46,7 +48,7 @@ class ResultScreen extends GetView<QuestionsController> {
                         bottom: 5,
                       ),
                       child: Text(
-                        'Congratulations',
+                        'Selamat!',
                         style: headerText.copyWith(
                           color: _textColor,
                         ),
@@ -108,6 +110,41 @@ class ResultScreen extends GetView<QuestionsController> {
                             },
                           );
                         },
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+
+            //
+            ColoredBox(
+              color: Theme.of(context).scaffoldBackgroundColor,
+              child: Padding(
+                padding: UIParameters.mobileScreenPadding,
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: MainButton(
+                        onTap: () {
+                          controller.tryAgain();
+                        },
+                        color: Colors.blueGrey,
+                        title: 'Coba Lagi',
+                      ),
+                    ),
+
+                    const SizedBox(
+                      width: 5,
+                    ),
+
+                    //
+                    Expanded(
+                      child: MainButton(
+                        onTap: () {
+                          controller.saveTestResult();
+                        },
+                        title: 'Kembali ke Beranda',
                       ),
                     ),
                   ],
